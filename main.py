@@ -1,5 +1,6 @@
 import pyglet
 import os
+from datetime import date
 
 absent_list = []
 for student_file_name in os.listdir("./students"):
@@ -21,3 +22,15 @@ for student_file_name in os.listdir("./students"):
 print("Absent Students: ")
 for student in absent_list:
     print(student)
+
+
+today = date.today()
+
+
+with open(f"{today}.txt", "a+") as f:
+    f.write("Absent Students: \n")
+    for student in absent_list:
+        f.write(student + "\n")
+
+
+print(f"This has been stored into a file called {today}.txt")
