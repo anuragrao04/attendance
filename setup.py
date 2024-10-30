@@ -31,6 +31,7 @@ print("Awesome, now generating audio files for your student list... Give me a mi
 
 def generate_audio(student):
     """Generates and saves the TTS audio for a single student."""
+    student, srn = student.split("\t")
     student_file_name = student.replace(" ", "_")
     tts = gTTS(student, lang='en')
     tts.save(f"./students/{student_file_name}.mp3")
