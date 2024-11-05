@@ -31,11 +31,18 @@ print("Awesome, now generating audio files for your student list... Give me a mi
 
 def generate_audio(student):
     """Generates and saves the TTS audio for a single student."""
-    student, srn = student.split("\t")
-    student_file_name = student.replace(" ", "_")
-    tts = gTTS(student, lang='en')
-    tts.save(f"./students/{student_file_name}.mp3")
-    print(f"Generated audio for {student}")
+    try:
+        print(student)
+        print(student.split("pes2"))
+        student, srn = student.split("pes2")
+        srn = "pes2" + srn
+        student_file_name = (srn+" "+student).replace(" ", "_")
+        tts = gTTS(student, lang='en')
+        tts.save(f"./students/{student_file_name}.mp3")
+        print(f"Generated audio for {student}")
+    except Exception as e:
+        print("Error generating for student", student)
+        print(e)
 
 
 with ThreadPoolExecutor(max_workers=4) as executor:
